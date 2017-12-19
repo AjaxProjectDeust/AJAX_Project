@@ -15,8 +15,9 @@ L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même 
 * Creer la structure HTML basique
   1. Création des scripts 
     * Insérer JQUERY?
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>```
+        ```html
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        ```
     * Utiliser Ajax
   2. Script du jeu 
     * Creer le jeu
