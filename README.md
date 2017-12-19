@@ -12,7 +12,7 @@ L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même 
 ### TODO
 
 1. Structurer le site 
-* Creer la structure HTML basique
+   Creer la structure HTML basique
   1. Création des scripts 
     * Insérer JQUERY?
         ```html
