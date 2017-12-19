@@ -5,5 +5,7 @@
 
 ### A faire
 1. Structurer le site 
+* Creer la structure HTML
+* Création des scripts
 
 2.
