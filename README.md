@@ -12,16 +12,16 @@ L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même 
 ### TODO
 
 1. Structurer le site 
-  1. Création des scripts 
+   Création des scripts 
     * Insérer JQUERY?
         ```html
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         ```
     * Utiliser Ajax
-  2. Script du jeu 
+   Script du jeu 
     * Creer le jeu
 2. Design du site
-  1. Création du CSS basique
-  2. Rajout d'effets et animations
+  *Création du CSS basique
+  *Rajout d'effets et animations
 
 
