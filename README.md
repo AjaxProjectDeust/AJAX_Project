@@ -8,7 +8,7 @@
 * Creer la structure HTML
 * Création des scripts 
 * 
-'Exemple de code'
-''' Ex de code 2'''
+`Exemple de code`
+```Ex de code 2```
 
 2.
