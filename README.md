@@ -1,5 +1,4 @@
 # Ajax_project
-Alt-H1
 
 ## Structurer le fichier readme.md
 [CHEATSHEET Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
