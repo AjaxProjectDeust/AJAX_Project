@@ -21,6 +21,4 @@ L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même 
 2. Design du site
     * Création du CSS basique
     * Rajout d'effets et animations
-
-
-Bonjour
+    * amélioration design
