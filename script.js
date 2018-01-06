@@ -5,13 +5,8 @@ $(document).ready(function() {
  $(div).innerHTML = "salut";   
 });
 */
+var rnd = Math.floor(Math.random());
+alert(rnd);
 
-   
-        var tag = document.getElementById("div1").innerHTML; 
-        alert(tag);
-        
-=======
-
-
-});
->>>>>>> 14350ac662135744683ad68d7044b27a226718ee
+var tag = document.getElementById("div1").innerHTML;
+alert(tag);
