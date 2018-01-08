@@ -1,11 +1,6 @@
 //Insérer le Jquery dans entre les accolades
 /*
-$(document).ready(function() {
-<<<<<<< HEAD
- $(div).innerHTML = "salut";   
-});
-*/
-yotyrtryt
+
 var faces = prompt('Entrez le nombre de faces souhaitées : ');
 
 function lance_de(minNbrFaces,faces){
