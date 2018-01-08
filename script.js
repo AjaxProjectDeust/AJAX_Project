@@ -1,10 +1,5 @@
 //Insérer le Jquery dans entre les accolades
 /*
-$(document).ready(function() {
-<<<<<<< HEAD
- $(div).innerHTML = "salut";   
-});
-*/
 
 var faces = prompt('Entrez le nombre de faces souhaitées : ');
 
