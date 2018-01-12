@@ -58,6 +58,7 @@ function verif_jetons() {
         return true; // on retourne "true" pour dire que le formulaire est valide
     }
 }
+
 /*
   //crée la balise souhaitée
   var btn = document.createElement("button");
@@ -70,12 +71,13 @@ function verif_jetons() {
 /*Valide l'envoi du bouton*/
 function valid_envoi() {
     if (verif_jetons() == true) {
-        document.getElementById("player_1").innerHTML = "player 1 : " + nbre_jetons.value;
-        document.getElementById("player_2").innerHTML = "player 2 : " + nbre_jetons.value;
+        //remplace le contenu de l'input
+        document.getElementById("player_1").innerHTML = "Player 1 : " + nbre_jetons.value;
+        document.getElementById("player_2").innerHTML = "Player 2 : " + nbre_jetons.value;
 
         lancePhaseDeux()
     } else {
-        document.getElementById("span_nbre_jetons").innerHTML = "Vous ne pouvez envoyer le score avant la validation du formulaire <br>Ecrivez un nombre";
+        document.getElementById("span_nbre_jetons").innerHTML = "Vous ne pouvez envoyer le score avant la validation du formulaire <br>Ecrivez un nombre comprit en 25 et 99";
         return false;
     }
 }
@@ -90,11 +92,12 @@ function lancePhaseDeux() {
     if (xhr !== false) {
         // En utilisant la méthode .open, nous construisons un appel AJAX vers le fichier adapté
         // On pense à rajouter un parametre de type GET à notre URL
+        
         //Ce sont les parametres entre les guillemets qui seront recueuillis en PhP
         var nb_jet_ajax = nbre_jetons.value;
-        var nb_jet_p1 = '?nb_jet_p1=' + nb_jet_ajax;
-        var nb_jet_p2 = '&nb_jet_p2=' + nb_jet_ajax;
-        xhr.open("GET", "php/main.php" + nb_jet_p1 + nb_jet_p2, true);
+        var nb_jetons = '?nb_jetons=' + nb_jet_ajax;
+        //var nb_jet_p2 = '&nb_jet_p2=' + nb_jet_ajax;
+        xhr.open("GET", "php/main.php" + nb_jetons, true);
 
         // On prépare une fonction qui sera appelée en callback, à chaque changement d'état renvoyé par le serveur
         xhr.onreadystatechange = function () {
@@ -108,10 +111,14 @@ function lancePhaseDeux() {
                 // Comme le fichier PHP va nous retourner un objet JSON, on le traite avec "JSON.parse"
                 // Cela nous permet de récupérer séparemment les valeurs de texte et de total
                 var retour = JSON.parse(xhr.responseText);
-                document.getElementById('resultat').innerHTML = retour;
+                document.getElementById('resultat_p1').innerHTML = "Score joueur 1 : " + retour.jet_p1;
+                document.getElementById('resultat_p2').innerHTML = "Score joueur 2 : " + retour.jet_p2;
+                
+                document.getElementById('gains_p1').innerHTML = "Lancé de dés joueur 1 : " + retour.gains_p1;
+                document.getElementById('gains_p2').innerHTML = "Lancé de dés joueur 2 : " + retour.gains_p2[0];
             } else {
                 // Puisque la communication ne s'est pas correctement déroulée (problème serveur ou page inaccessible/introuvable/etc...), nous affichons un message d'erreur dans la zone de résultat
-                document.getElementById('resultat').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";
+                document.getElementById('resultat_p1').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";
             }
         };
 

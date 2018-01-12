@@ -92,18 +92,24 @@
     -->
     <!-- Nombre de jetons -->
     <h1>Nombre de jetons</h1>
-    <p id="player_1">
+    <span id="player_1">
         Entrez votre nombre de jetons :<br>
         <input type="text" id="nbre_jetons" /> ... avant de
         <input type="button" value="jouer !" id="bouton_jetons" /><br>
         <span class="retour" id="span_nbre_jetons"></span>
-    </p>
-    <p id="player_2"></p>
+    </span><br>
+    <span id="player_2"></span>
 
     <!--<input type="button" value="rejouer !" id="rejouer" /><br>-->
 
     <h1 id="h1">Affichage du résultat</h1>
-    <div class="resultat" id="resultat"></div>
+    <span class="resultat" id="resultat_p1"></span><br>
+    <span class="resultat" id="resultat_p2"></span>
+    
+     <h1 id="h1">Lancé de dés</h1>
+    <span class="resultat" id="gains_p1"></span><br>
+    <span class="resultat" id="gains_p2"></span>
+    
     <!-- score -->
     <script src="script/appel_1.js"></script>
     <!-- fichier ajax-->
