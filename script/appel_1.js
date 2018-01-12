@@ -1,6 +1,6 @@
 /* 
  * Instanciation XMLHTTPRequest
- **/
+ */
 function getRequest() {
     // On initialise la variable dans laquelle va être stockée notre objet XMLHTTPRequest
     var xhr;
@@ -68,31 +68,50 @@ function verif_jetons() {
   document.body.appendChild(btn);
   */
 
+//bouton de relance si les jetons sont déja affichés
+function relance(){
+    if (affiche_jetons_restants() == true){
+        lancePhaseDeux();
+    }else{
+        alert("echec lancement");
+    }
+}
+
 /*Valide l'envoi du bouton*/
 function valid_envoi() {
     if (verif_jetons() == true) {
-        //remplace le contenu de l'input
-        document.getElementById("player_1").innerHTML = "Player 1 : " + nbre_jetons.value;
-        document.getElementById("player_2").innerHTML = "Player 2 : " + nbre_jetons.value;
-
-        lancePhaseDeux()
+    // affiche le nombre de jetons pour le joueur
+    affiche_jetons_restants();
+        return true
     } else {
         document.getElementById("span_nbre_jetons").innerHTML = "Vous ne pouvez envoyer le score avant la validation du formulaire <br>Ecrivez un nombre comprit en 25 et 99";
         return false;
     }
 }
+
+function affiche_jetons_restants(){
+    //remplace le contenu de l'input par les deux nombres de jetons
+    var p1 = document.getElementById("player_1");
+    p1.innerHTML = "Player 1 : " + nbre_jetons.value;
+    var p2 = document.getElementById("player_2");
+    p2.innerHTML = "Player 2 : " + nbre_jetons.value;
+    var r = document.getElementById("relancer");
+    r.style.visibility = "visible";
+    return true;
+ }
+
 /* Fonction contenant le moteur AJAX pointant sur le fichier cible PHP
-Cette fonction traite également la réponse du serveur */
+Cette fonction traite également la réponse du serveur 
+*/
 function lancePhaseDeux() {
     // On fait appel à notre fonction getRequest afin de créer une instance de l'objet XMLHTTPRequest.
     var xhr = getRequest();
-
     // Nous vérifions que la fonction getRequest a parfaitement fonctionnée 
     // cette fonction nous retourne le booléen "false" si une erreur s'est produite
     if (xhr !== false) {
         // En utilisant la méthode .open, nous construisons un appel AJAX vers le fichier adapté
         // On pense à rajouter un parametre de type GET à notre URL
-        
+
         //Ce sont les parametres entre les guillemets qui seront recueuillis en PhP
         var nb_jet_ajax = nbre_jetons.value;
         var nb_jetons = '?nb_jetons=' + nb_jet_ajax;
@@ -111,19 +130,66 @@ function lancePhaseDeux() {
                 // Comme le fichier PHP va nous retourner un objet JSON, on le traite avec "JSON.parse"
                 // Cela nous permet de récupérer séparemment les valeurs de texte et de total
                 var retour = JSON.parse(xhr.responseText);
-                document.getElementById('resultat_p1').innerHTML = "Score joueur 1 : " + retour.jet_p1;
-                document.getElementById('resultat_p2').innerHTML = "Score joueur 2 : " + retour.jet_p2;
+
+                //fonction d'affichage des éléments ajax reçus 
+                view(retour);
                 
-                document.getElementById('gains_p1').innerHTML = "Lancé de dés joueur 1 : " + retour.gains_p1;
-                document.getElementById('gains_p2').innerHTML = "Lancé de dés joueur 2 : " + retour.gains_p2[0];
             } else {
-                // Puisque la communication ne s'est pas correctement déroulée (problème serveur ou page inaccessible/introuvable/etc...), nous affichons un message d'erreur dans la zone de résultat
-                document.getElementById('resultat_p1').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";
+                // message d'erreur car erreur communication
+                document.getElementById('jetons_restants_p1').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";
             }
         };
-
         // Une fois l'appel construit, nous envoyons la requête au serveur avec la méthode .send. 
         xhr.send();
-
     }
+}
+
+function view(retour) {
+     //ajoute la classe résultat pour l'affichage
+    document.getElementById("player_1").classList.add("resultat");
+    document.getElementById("player_2").classList.add("resultat");
+    
+    //affichage du contenu invisible
+    var visible = document.getElementsByClassName("hidden");
+    for (i = 0; i < 3; i++) {
+        visible[i].style.visibility = "visible";
+    }
+    
+     //affichage du nbre de jetons restants
+    var jetons_p1 = document.getElementById('jetons_restants_p1').innerHTML = "Jetons joueur 1 : " + retour.jet_p1;
+    
+    var jetons_p2 =
+    document.getElementById('jetons_restants_p2').innerHTML = "Jetons joueur 2 : " + retour.jet_p2;
+    
+     //affichage des score et du message de score
+    var sc_p1 = document.getElementById('score_p1');
+    var sc_p2 = document.getElementById('score_p2');
+
+    document.getElementById('msg_score').innerHTML = retour.ret;
+
+    //parcours des dés pour l'affichage
+    for (i = 0; i < 3; i++) {
+        //variables tampon
+        var r_g1 = retour.gains_p1;
+        var r_g2 = retour.gains_p2;
+
+        //dés du joueur 1
+        gains_p1[i] = document.getElementById('gains_p1').innerHTML = "Lancé de dés joueur 1 : " +
+            "<br> Dé 1 : " + r_g1[i] +
+            "<br> Dé 2 : " + r_g1[i - 1] +
+            "<br> Dé 3 : " + r_g1[i - 2] +
+            "<hr> Score joueur p1 : " + retour.gains_tot_p1;
+
+        //dés du joueur 2
+        gains_p2[i] = document.getElementById('gains_p2').innerHTML = "Lancé de dés joueur 2 : " +
+            "<br> Dé 1 : " + r_g2[i] +
+            "<br> Dé 2 : " + r_g2[i - 1] +
+            "<br> Dé 3 : " + r_g2[i - 2] +
+             "<hr>Score joueur p2 : " + retour.gains_tot_p2;
+    }
+
+    /*  const nouveauDiv = document.createElement("div");
+        const nouveauContenu = document.createTextNode("Salutations !");
+        nouveauDiv.appendChild(nouveauContenu) //ajoute le contenu au div
+     */
 }
