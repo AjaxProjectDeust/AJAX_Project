@@ -4,95 +4,120 @@
 <head>
     <meta charset="UTF-8">
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
- 
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Jeu du 421</title>
 </head>
 
 <body>
     <h1>Jeu du 421</h1>
+    <h2>Règles officieles</h2>
     <p>
-Pour commencer une partie de 421, il faut dans un premier temps déterminer le joueur qui commencera la partie. Pour ce faire, il faut lancer une partie de dés entre les joueurs. Celui qui fait le plus petit score ou le plus grand score lance la partie, c’est à vous de décider au départ. Chaque joueur lance les dés tour à tour en respectant le sens des aiguilles d’une montre.
-Ordre et valeur des combinaisons au 421 :
+        Réalisation d’un jeu de dé 421 simplifié L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même nombre de jetons. Chaque joueur lance 3 dés. Celui qui fait la meilleure combinaison (vous pouvez ici simplifier) donne des jetons à l’autre en fonction de la combinaison réalisée. Si les combinaisons sont équivalentes, il ne se passe rien. La partie est terminée lorsque l’un des joueurs n’a plus de jetons. Il faudra spécifier à l’utilisateur les règles précises du jeu
+    </p>
+    <h2>Régles simplifiées</h2>
+    <ol>
+        <li>Entrez le nombre de jetons souhaités</li>
+        <li></li>
+        <li></li>
 
-Au 421, on respecte cet ordre : as, six, cinq, quatre, trois et deux. L’as étant le plus fort.
-
-Voici les combinaisons du 421 par ordre de valeur. De la meilleure combinaison à la moins bonne.
-    </p>   
+    </ol>
+    <!-- 
     <h2> Ordre des combinaisons</h2>
-<table>
-<tr>
-    <td>N°1</td>
-    <td>421</td>
-</tr>
-<tr>
-    <td>N°2</td>
-	<td>3 As</td>
-</tr>
-<tr>
-    <td>N°3</td>
-	<td>2 As – Six</td>
-</tr>
-<tr>
-    <td>N°4</td>
-    <td>3 Six</td>
-</tr>
-<tr>
-<td>N°5</td>
-<td>2 As – Cinq</td>
-</tr>
-<tr>
-    <td>N°6</td>
-    <td>3 Cinq</td>
-</tr>
-<tr>
-    <td>N°7	</td>
-    <td>2 As – Quatre</td>
-</tr>
-<tr>
-    <td>N°8</td>
-    <td>3 Quatre</td>
-</tr>
-<tr>
-    <td>N°9</td>
-    <td>2 As – Trois</td>
-</tr>
-<tr>
-    <td>N°10</td>
-    <td>3 Trois</td>
-</tr>
-<tr>
-    <td>N°11</td>
-    <td>2 As – Deux</td>
-</tr>
-<tr>
-    <td>N°12</td>
-    <td>3 Deux</td>
-</tr>
-<tr>
-    <td>N°13</td>
-    <td>Six – Cinq – Quatre</td>
-</tr>
-<tr>
-    <td>N°14</td>
-    <td>Cinq – Quatre – Trois</td>
-</tr>
-<tr>
-    <td>N°15</td>
-    <td>Quatre – Trois – Deux</td>
-</tr>
-<tr>
-    <td>N°16</td>
-    <td>Trois – Deux – As</td>
-</tr>
-</table>
- <!-- Affichage du résultat -->
-   <h1 id="h1">Affichage du résultat</h1>
-    <div id="div1"></div>
-    <div id="div2"></div>
-    <div id="div3"></div>
-    <input id="button" type="button" value="cliquez">
-    <script src="script.js" type="text/javascript"></script>
+    <table>
+        <tr>
+            <td>N°1</td>
+            <td>421</td>
+        </tr>
+        <tr>
+            <td>N°2</td>
+            <td>3 As</td>
+        </tr>
+        <tr>
+            <td>N°3</td>
+            <td>2 As – Six</td>
+        </tr>
+        <tr>
+            <td>N°4</td>
+            <td>3 Six</td>
+        </tr>
+        <tr>
+            <td>N°5</td>
+            <td>2 As – Cinq</td>
+        </tr>
+        <tr>
+            <td>N°6</td>
+            <td>3 Cinq</td>
+        </tr>
+        <tr>
+            <td>N°7 </td>
+            <td>2 As – Quatre</td>
+        </tr>
+        <tr>
+            <td>N°8</td>
+            <td>3 Quatre</td>
+        </tr>
+        <tr>
+            <td>N°9</td>
+            <td>2 As – Trois</td>
+        </tr>
+        <tr>
+            <td>N°10</td>
+            <td>3 Trois</td>
+        </tr>
+        <tr>
+            <td>N°11</td>
+            <td>2 As – Deux</td>
+        </tr>
+        <tr>
+            <td>N°12</td>
+            <td>3 Deux</td>
+        </tr>
+        <tr>
+            <td>N°13</td>
+            <td>Six – Cinq – Quatre</td>
+        </tr>
+        <tr>
+            <td>N°14</td>
+            <td>Cinq – Quatre – Trois</td>
+        </tr>
+        <tr>
+            <td>N°15</td>
+            <td>Quatre – Trois – Deux</td>
+        </tr>
+        <tr>
+            <td>N°16</td>
+            <td>Trois – Deux – As</td>
+        </tr>
+    </table>
+    -->
+    <!-- Nombre de jetons -->
+    <h1>Nombre de jetons</h1>
+    <p id="player_1">
+        Entrez votre nombre de jetons :<br>
+        <input type="text" id="nbre_jetons" /> ... avant de
+        <input type="button" value="jouer !" id="bouton_jetons" /><br>
+        <span class="retour" id="span_nbre_jetons"></span>
+    </p>
+    <p id="player_2"></p>
+
+    <!--<input type="button" value="rejouer !" id="rejouer" /><br>-->
+
+    <h1 id="h1">Affichage du résultat</h1>
+    <div class="resultat" id="resultat"></div>
+    <!-- score -->
+    <script src="script/appel_1.js"></script>
+    <!-- fichier ajax-->
+    <script type="text/javascript">
+        /* On crée nos différents "écouteurs" d'événements*/
+        // pour la vérif de l'input, vérifie les jetons
+        var nbre_jetons = document.getElementById("nbre_jetons");
+        var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_jetons);
+
+        //bouton pour la vérif de l'envoi du nombre de jetons
+        var bouton_jetons = document.getElementById("bouton_jetons");
+        var event_jetons = bouton_jetons.addEventListener('click', valid_envoi);
+
+    </script>
 </body>
-   
+
 </html>

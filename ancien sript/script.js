@@ -1,4 +1,12 @@
-/*saisie nbre de face
+/*
+qu'elles pages.
+servir a quoi ajax, a quoi va faire.
+ajax. 421 simplifié avec.
+
+simplifier regles
+
+choix de code 
+saisie nbre de face
 random en fonction du nombre de faces 
 chaque joueur lance 3 dés
 meilleure combinaison, donne des jetons à l'autre en fonction de la combinaison
@@ -15,17 +23,27 @@ h1.onclick = function(){
 //joueur 1
 var player_1 = 0;
 //joueur 2
-var player_2 = 0;
+var player_pnj = 0;
 
-//// On crée nos différents "écouteurs" d'événements
+// On crée nos différents "écouteurs" d'événements
 var button = document.getElementById("button");
-var click = button.addEventListener('click', demande_face);
+var click = button.addEventListener('click', genere_jetons);
+
+//id des jetons
+var nbre_jetons = document.getElementById("nbre_jetons");
 
 //id du tag
 var ret_1 = document.getElementById("div1");
 var ret_2 = document.getElementById("div2");
 var ret_3 = document.getElementById("div3");
 //var h1 = document.getElementById("h1");
+
+//generation des jetons
+function genere_jetons()
+{   
+         var rnd = Math.floor(Math.random() * (max - min + 1)) + min;
+        alert(rnd);
+}
 
 function demande_face(){
     //Demande le nombre de face du dé
@@ -38,9 +56,8 @@ function demande_face(){
 var lance = function lance_de(nbre_faces){
    // entre 1 et le le nombre de faces du dé
    var random_faces = Math.floor(Math.random() * nbre_faces + 1);
-   //affiche dans la console
     ret_1.textContent = "Le premier tirage est : " + random_faces;
-    console.log("Le nombre aléatoire est " + random_faces);
+    console.log("Le nombre aléatoire est " + ret_1.textContent);
    
     var reponse = prompt("Voulez vous relancer automatiquement? \nRéponse oui ou non");
     
@@ -49,8 +66,8 @@ var lance = function lance_de(nbre_faces){
     }else if(reponse === "non"){
         var reponse_manuelle = prompt("Manuellement ? \nRéponse oui ou non");
         if (reponse_manuelle === "oui"){
-            alert("");
-        }else if( reponse ==="non" ){
+            
+        }else if( reponse === "non" ){
               alert("Tampis");
         }else{
               alert("Veuillez recharger la page");
@@ -59,6 +76,7 @@ var lance = function lance_de(nbre_faces){
         alert("Mauvaise synthaxe");
     }
 }
+
 //lance 3 dés
 function lance_3d(nbre_faces) {
     for (var i = 0; i < 2; i++) {
