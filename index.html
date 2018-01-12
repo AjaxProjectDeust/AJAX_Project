@@ -90,25 +90,50 @@
         </tr>
     </table>
     -->
+
     <!-- Nombre de jetons -->
-    <h1>Nombre de jetons</h1>
-    <p id="player_1">
+    <div>
+        <h1>Nombre de jetons</h1>
+        <span id="player_1">
         Entrez votre nombre de jetons :<br>
         <input type="text" id="nbre_jetons" /> ... avant de
         <input type="button" value="jouer !" id="bouton_jetons" /><br>
         <span class="retour" id="span_nbre_jetons"></span>
-    </p>
-    <p id="player_2"></p>
+        </span>
+        <span id="player_2"></span>
+    </div>
 
-    <!--<input type="button" value="rejouer !" id="rejouer" /><br>-->
+    <div class="hidden">
+        <h1 id="h1">Affichage du nombre de jetons restants</h1>
+        <span class="resultat" id="jetons_restants_p1"></span>
+        <span class="resultat" id="jetons_restants_p2"></span>
+    </div>
 
-    <h1 id="h1">Affichage du résultat</h1>
-    <div class="resultat" id="resultat"></div>
-    <!-- score -->
+    <!-- lancement des dés 
+    style="visibility: hidden" -->
+    
+    <div class="hidden">
+        <h1 id="h1">Lancé de dés</h1>
+         
+        <span class="resultat" id="gains_p1"><span id="score_p1"></span><br></span>
+        
+        <span class="resultat" id="gains_p2"></span>
+        <span id="score_p2"></span><br><br>
+        
+         <input style="visibility: : hidden" type="button" value="relancer !" id="relancer" />
+    </div>
+
+    <!-- score dés-->
+    <div class="hidden">
+        <h1 id="h1">Score des dés par joueur</h1>
+        <span id="msg_score"></span>
+    </div>
+
     <script src="script/appel_1.js"></script>
     <!-- fichier ajax-->
     <script type="text/javascript">
         /* On crée nos différents "écouteurs" d'événements*/
+
         // pour la vérif de l'input, vérifie les jetons
         var nbre_jetons = document.getElementById("nbre_jetons");
         var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_jetons);
@@ -116,6 +141,10 @@
         //bouton pour la vérif de l'envoi du nombre de jetons
         var bouton_jetons = document.getElementById("bouton_jetons");
         var event_jetons = bouton_jetons.addEventListener('click', valid_envoi);
+        
+        //relance de dés
+        var relancer = document.getElementById("relancer");
+        var relance = relancer.addEventListener('click', relance);
 
     </script>
 </body>

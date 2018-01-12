@@ -14,3 +14,10 @@ table{
 td{
     border-style:solid;
 }
+.hidden{
+    visibility: hidden;
+}
+.resultat{
+    display: inline-block;
+    width:200px;
+}
