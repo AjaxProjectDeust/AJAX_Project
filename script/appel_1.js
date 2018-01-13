@@ -42,9 +42,9 @@ function verif_input() {
         document.getElementById('span_nbre_jetons').style.color = "red";
         return false;
 
-        //vérif nombre en 25 et 99 
-    } else if (nbre_jetons.value < 25 || nbre_jetons.value > 100) { // Si la taille est inférieure à 3 caractères, on affiche un message d'erreur en rouge
-        document.getElementById('span_nbre_jetons').innerHTML = "Le nombre  n'est pas compris entre 25 et 99";
+        //vérif nombre en 20 et 99 
+    } else if (nbre_jetons.value < 20 || nbre_jetons.value > 100) { // Si la taille est inférieure à 3 caractères, on affiche un message d'erreur en rouge
+        document.getElementById('span_nbre_jetons').innerHTML = "Le nombre  n'est pas compris entre 20 et 99";
         document.getElementById('span_nbre_jetons').style.color = "red";
         return false;
 
