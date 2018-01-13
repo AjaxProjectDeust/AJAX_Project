@@ -14,14 +14,14 @@
     $nb_jet_p1;
     $nb_jet_p2;
 
-
     // Récuperation du parametre nombre de jetons p1 et p2
 	if(isset($_GET['nb_jetons'])){
 		$nb_jet_p1 = $_GET['nb_jetons'];
 		$nb_jet_p2 = $_GET['nb_jetons'];
 	}
 
-    //stockage dans un tableau des différents dés
+
+    //stockage dans un tableau des différents lancés de dés
     for ($i = 1; $i <= 3; $i++) {
         // Calcul du  gain entre 1 et 6 faces
         $gains_p1	=	rand(1,6);

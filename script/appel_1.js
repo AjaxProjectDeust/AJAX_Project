@@ -1,6 +1,10 @@
 /* 
  * Instanciation XMLHTTPRequest
  */
+
+/*1x que verif input est bien rempli 
+On peut utiliser la fonction valide_jetons
+envoi jetons des joueurs */
 function getRequest() {
     // On initialise la variable dans laquelle va être stockée notre objet XMLHTTPRequest
     var xhr;
@@ -24,7 +28,7 @@ function getRequest() {
 }
 
 //écrit dans un span si la valeur de l'input est bonne
-function verif_jetons() {
+function verif_input() {
     // Si le champs n'est pas renseigné, on affiche un message d'erreur en rouge
     if (nbre_jetons.value == "") {
         document.getElementById('span_nbre_jetons').innerHTML = "Non renseigné !";
@@ -60,22 +64,15 @@ function verif_jetons() {
     }
 }
 
-/*
-  //crée la balise souhaitée
-  var btn = document.createElement("button");
-  //crée un noeud de texte avec le texte dedant
-  var t = document.createTextNode("click");
-  btn.appendChild(t);
-  document.body.appendChild(btn);
-  */
+/*bouton qui valide l'envoi du bouton et déclenche l'envoit les données*/
+function valide_jetons() {
+    //verif_input
+    if (verif_input() == true) {
 
-/*boutton qui valide l'envoi du bouton et déclenche l'envoit les données*/
-function envoi_jeton() {
-    //reverification
-    if (verif_jetons() == true) {
-        
+        lance_affichage_jetons()
+
         //déclenche la phase 2 quant on appuit sur le bouton
-        lancePhaseDeux();
+        //lancePhaseDeux();
 
         // affiche le nombre de jetons pour le joueur en remplacant l'input
         return true
@@ -86,38 +83,67 @@ function envoi_jeton() {
     }
 }
 
-function affiche_jetons_restants(retour) {
-    /*
+function lance_affichage_jetons() {
+
     //remplace le contenu de l'input par les deux nombres de jetons
     var p1_value = nbre_jetons.value;
     var p2_value = nbre_jetons.value;
-    
+    //recupère le champs du formulaire
     var p1 = document.getElementById("player_1");
-    p1.innerHTML = "Player 1 : " + p1_value;
-    
     var p2 = document.getElementById("player_2");
-    p2.innerHTML = "Player 2 : " + p2_value;
-    
-     //ajoute la classe résultat pour l'affichage
-    //document.getElementById("player_1").classList.add("resultat");
-    //document.getElementById("player_2").classList.add("resultat");
-    
-    */
-    //affiche le bouton relancer
+    //recupère le bouton relance
     var r = document.getElementById("relancer");
-    r.style.visibility = "visible";
 
+    //affiche le nombre de jetons des joueurs au départ
+    p1.innerHTML = "Player 1 : " + p1_value;
+    p2.innerHTML = "Player 2 : " + p2_value;
+
+    //ajoute la classe résultat pour l'affichage
+    p1.classList.add("resultat");
+    p2.classList.add("resultat");
+
+    var bite = document.getElementsByTagName("div")[1].style.visibility = "visible";
+
+    var jetons_p1 = document.getElementById('jetons_restants_p1').innerHTML = "Jetons joueur 1 : " + p1_value;
+    alert(p1_value)
+
+    var jetons_p2 =
+        document.getElementById('jetons_restants_p2').innerHTML = "Jetons joueur 2 : " + p1_value;
+
+    // retourne un tabeau de valeurs qui seront envoyées à ajax;
+    return [p1_value, p2_value];
+}
+//bouton de relance si les jetons sont déja affichés
+function relance() {
+    //change la valeur du bouton lancer en relancer
+    relancer.value = "Relancer !";
+
+    var codes = lance_affichage_jetons();
+    var dCodes = codes[0];
+    var dCodes2 = codes[1];
+
+    //lancePhaseDeux();
+    /*
+    if (affiche_jetons_restants() == true) {
+        
+    } else {
+        alert("echec lancement");
+    }
+    */
+}
+
+function retour_calc_php(retour) {
     //affichage du contenu invisible
     var visible = document.getElementsByClassName("hidden");
     for (i = 0; i < 3; i++) {
         visible[i].style.visibility = "visible";
     }
-    
+
     //affichage du nbre de jetons restants
     var jetons_p1 = document.getElementById('jetons_restants_p1').innerHTML = "Jetons joueur 1 : " + retour.jet_p1;
 
     var jetons_p2 =
-    document.getElementById('jetons_restants_p2').innerHTML = "Jetons joueur 2 : " + retour.jet_p2;
+        document.getElementById('jetons_restants_p2').innerHTML = "Jetons joueur 2 : " + retour.jet_p2;
 
     //affichage des score et du message de score
     var sc_p1 = document.getElementById('score_p1');
@@ -145,19 +171,9 @@ function affiche_jetons_restants(retour) {
             "<br> Dé 3 : " + r_g2[i - 2] +
             "<hr>Score joueur p2 : " + retour.gains_tot_p2;
     }
-   // return true;
 }
 
-//bouton de relance si les jetons sont déja affichés
-function relance(retour) {
-    /*
-    if (affiche_jetons_restants() == true) {
-        lancePhaseDeux();
-    } else {
-        alert("echec lancement");
-    }
-    */
-}
+
 
 /* Fonction contenant le moteur AJAX pointant sur le fichier cible PHP
 Cette fonction traite également la réponse du serveur 
@@ -187,12 +203,12 @@ function lancePhaseDeux() {
 
                 // Nous récupérons le contenu du fichier appelé en faisant appel à la méthode .responseText
                 // Comme le fichier PHP va nous retourner un objet JSON, on le traite avec "JSON.parse"
-                
+
                 //retour est un tableau qui contient les données envoyées de PhP
                 var retour = JSON.parse(xhr.responseText);
-                
+
                 //fonction d'affichage des éléments ajax reçus 
-                affiche_jetons_restants(retour);                
+                retour_calc_php(retour);
             } else {
                 // message d'erreur car erreur communication
                 document.getElementById('jetons_restants_p1').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";

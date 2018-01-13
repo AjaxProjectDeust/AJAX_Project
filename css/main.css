@@ -14,7 +14,12 @@ table{
 td{
     border-style:solid;
 }
+
 .hidden{
+    visibility: hidden;
+}
+
+.hidden_1{
     visibility: hidden;
 }
 .resultat{

@@ -1,0 +1,19 @@
+
+/*
+  //crée la balise souhaitée
+  var btn = document.createElement("button");
+  //crée un noeud de texte avec le texte dedant
+  var t = document.createTextNode("click");
+  btn.appendChild(t);
+  document.body.appendChild(btn);
+  */
+  
+  
+function view(retour) {
+
+
+    /*  const nouveauDiv = document.createElement("div");
+        const nouveauContenu = document.createTextNode("Salutations !");
+        nouveauDiv.appendChild(nouveauContenu) //ajoute le contenu au div
+     */
+}

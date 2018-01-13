@@ -92,8 +92,8 @@
     -->
 
     <!-- Nombre de jetons -->
+    <h1>Nombre de jetons des joueurs</h1>
     <div>
-        <h1>Nombre de jetons</h1>
         <span id="player_1">
         Entrez votre nombre de jetons :<br>
         <input type="text" id="nbre_jetons" /> ... avant de
@@ -103,24 +103,22 @@
         <span id="player_2"></span>
     </div>
 
-    <div class="hidden">
-        <h1 id="h1">Affichage du nombre de jetons restants</h1>
+    <div style="visibility: hidden">
+        <h1>Affichage du nombre de jetons restants</h1>
         <span class="resultat" id="jetons_restants_p1"></span>
-        <span class="resultat" id="jetons_restants_p2"></span>
+        <span class="resultat" id="jetons_restants_p2"></span><br>
+        <input type="button" value="Lancer !" id="relancer" />
     </div>
 
     <!-- lancement des dés 
     style="visibility: hidden" -->
-    
+
     <div class="hidden">
-        <h1 id="h1">Lancé de dés</h1>
-         
-        <span class="resultat" id="gains_p1"><span id="score_p1"></span><br></span>
-        
+        <h1>Lancé de dés</h1>
+        <span class="resultat" id="gains_p1"></span>
+        <span id="score_p1"></span>
         <span class="resultat" id="gains_p2"></span>
         <span id="score_p2"></span><br><br>
-        
-         <input style="visibility: : hidden" type="button" value="relancer !" id="relancer" />
     </div>
 
     <!-- score dés-->
@@ -136,12 +134,12 @@
 
         // pour la vérif de l'input, vérifie le nombre dejetons
         var nbre_jetons = document.getElementById("nbre_jetons");
-        var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_jetons);
+        var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_input);
 
         //bouton qui envoit les données
         var bouton_jetons = document.getElementById("bouton_jetons");
-        var event_jetons = bouton_jetons.addEventListener('click', envoi_jeton);
-        
+        var event_jetons = bouton_jetons.addEventListener('click', valide_jetons);
+
         //relance de dés
         var relancer = document.getElementById("relancer");
         var relance = relancer.addEventListener('click', relance);
