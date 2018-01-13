@@ -134,13 +134,13 @@
     <script type="text/javascript">
         /* On crée nos différents "écouteurs" d'événements*/
 
-        // pour la vérif de l'input, vérifie les jetons
+        // pour la vérif de l'input, vérifie le nombre dejetons
         var nbre_jetons = document.getElementById("nbre_jetons");
         var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_jetons);
 
-        //bouton pour la vérif de l'envoi du nombre de jetons
+        //bouton qui envoit les données
         var bouton_jetons = document.getElementById("bouton_jetons");
-        var event_jetons = bouton_jetons.addEventListener('click', valid_envoi);
+        var event_jetons = bouton_jetons.addEventListener('click', envoi_jeton);
         
         //relance de dés
         var relancer = document.getElementById("relancer");
