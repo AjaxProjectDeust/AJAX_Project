@@ -22,11 +22,9 @@
 
     //stockage dans un tableau des différents lancés de dés
     for ($i = 1; $i <= 3; $i++) {
-
         // Calcul du  gain entre 1 et 6 faces
         $gains_p1	=	rand(1,6);
         array_push($array_gains_p1, $gains_p1);
-
         $gains_p2	=	rand(1,6);
         array_push($array_gains_p2  , $gains_p2);
     }
@@ -46,7 +44,7 @@
     //Différence entre les joueurs
     if($gains_tot_p1 > $gains_tot_p2){
        $dif = $gains_tot_p1 - $gains_tot_p2;
-        $perte = $nb_jet_p1 - 100;
+        $perte = $nb_jet_p1;
         //soustrait le nombre de jetons
         //$nb_jet_p2 = $nb_jet_p2 - 5 ;
 
@@ -55,7 +53,7 @@
         
     }else if($gains_tot_p2 > $gains_tot_p1){
        $dif = $gains_tot_p2 - $gains_tot_p1;
-       $perte = $nb_jet_p1 - 100;
+       $perte = $nb_jet_p1;
        $ret_p1 = 'Bravo joueur 2, vous avez fait '.$dif.' de plus que le joueur 1 !';  
         $ret_p2 = 'Joueur 2, vous perdez : '.$perte.' jetons';
         
@@ -70,7 +68,7 @@
     $_resultat = array(
         // nombres de jetons reçus
 		'jet_p1'=>	$nb_jet_p1 - 5,
-		'jet_p2'=>	$nb_jet_p2,
+		'jet_p2'=>	$nb_jet_p2 -2,
         // différents gains des dés
         'gains_p1'=> $array_gains_p1,
         'gains_p2'=> $array_gains_p2,

@@ -69,11 +69,7 @@ function valide_jetons() {
     //verif_input
     if (verif_input() == true) {
 
-        lance_affichage_jetons()
-
-        //déclenche la phase 2 quant on appuit sur le bouton
-        //lancePhaseDeux();
-
+        lance_affichage_jetons();
         // affiche le nombre de jetons pour le joueur en remplacant l'input
         return true
 
@@ -84,9 +80,6 @@ function valide_jetons() {
 }
 
 function lance_affichage_jetons() {
-    //remplace le contenu de l'input par les deux nombres de jetons
-    var p1_value = nbre_jetons.value;
-    var p2_value = nbre_jetons.value;
     //recupère le champs du formulaire
     var p1 = document.getElementById("player_1");
     var p2 = document.getElementById("player_2");
@@ -104,35 +97,31 @@ function lance_affichage_jetons() {
     //affiche le contenu caché qui fait apparaitre le bouton et 
     document.getElementsByTagName("div")[1].style.visibility = "visible";
 
-    var jetons_p1 = document.getElementById('jetons_restants_p1');
-    jetons_p1.innerHTML = "Jetons joueur 1 : " + nbre_jetons.value;
-
-    var jetons_p2 = document.getElementById('jetons_restants_p2');
-    jetons_p2.innerHTML = "Jetons joueur 2 : " + nbre_jetons.value;
+    // if (jetons_p1.innerHTML == "" || jetons_p2.innerHTML == "") {
+    jetons_p1.innerHTML = "Jetons joueur 1 : " + p1_value;
+    jetons_p2.innerHTML = "Jetons joueur 2 : " + p2_value;
+    //}
     return [p1_value, p2_value]
 }
 
 //bouton de relance si les jetons sont déja affichés
-function relance(retour) {
-    var p_jetons = lance_affichage_jetons();
-    var p1_value = p_jetons[0];
-    var p2_value = p_jetons[1];
+function relance() {
 
+    //alert(recup_jetons(retour.jet_j1);
+
+    lance = lance_affichage_jetons()
+
+    lancePhaseDeux(p1_value, p2_value);
     //change la valeur du bouton lancer en relancer
     relancer.value = "Relancer !";
-    
-    // retourne un tabeau de valeurs qui seront envoyées à ajax;
-    lancePhaseDeux(p1_value, p2_value);
-    alert(retour.jet_p1)
 
+    // retourne un tabeau de valeurs qui seront envoyées à ajax;
 
     //  return [p1_value, p2_value];
 
     //var jetons_p1 = document.getElementById('jetons_restants_p1');
     //var jetons_p2 = document.getElementById('jetons_restants_p2');
     //jetons_p1.innerHTML = retour.jet_p1;
-
-
 
     /*
     if (affiche_jetons_restants() == true) {
@@ -147,9 +136,9 @@ function retour_calc_php(retour) {
     //affichage du contenu invisible
     var visible = document.getElementsByClassName("hidden");
 
-    //nbre de jetons restants
-    var jetons_p1 = document.getElementById('jetons_restants_p1');
-    var jetons_p2 = document.getElementById('jetons_restants_p2');
+    //jetons restants
+    var jet_p1 = retour.jet_p1;
+    var jet_p2 = retour.jet_p2;
 
     //scores 
     var sc_p1 = document.getElementById('score_p1');
@@ -164,36 +153,68 @@ function retour_calc_php(retour) {
     msg_scr2.innerHTML = retour.ret_p2;
 
     //affichage jetons
-    jetons_p1.innerHTML = "Jetons joueur 1 : " + retour.jet_p1;
-    jetons_p2.innerHTML = "Jetons joueur 2 : " + retour.jet_p2;
+    jetons_p1.innerHTML = 'Jetons joueur 1 : ' + jet_p1 + '<br>';
+    jetons_p2.innerHTML = 'Jetons joueur 2 : ' + jet_p2 + '<br>';
+
+    //actualise les valeurs des jetons restants
+    p1_value = jet_p1;
+    p2_value = jet_p2;
 
     //parcours des dés pour l'affichage
-    for (i = 0; i < 3; i++) {
-        //variables tampon
-        var r_g1 = retour.gains_p1;
-        var r_g2 = retour.gains_p2;
+    //for (i = 0; i < 3; i++) {
+    //variables tampon pour les gains de retours des dés
+    var r_g1 = retour.gains_p1;
+    var r_g2 = retour.gains_p2;
 
-        //dés du joueur 1
-        gains_p1[i] = document.getElementById('gains_p1').innerHTML = "Lancé de dés joueur 1 : " +
-            "<br> Dé 1 : " + r_g1[i] +
-            "<br> Dé 2 : " + r_g1[i - 1] +
-            "<br> Dé 3 : " + r_g1[i - 2] +
-            "<hr> Score joueur p1 : " + retour.gains_tot_p1;
+    //dés du joueur 1
+    gains_p1[0] = document.getElementById('gains_p1').innerHTML = 'Lancé de dés joueur 1 : ' +
+        '<br> Dé 1 : ' + r_g1[0] +
+        '<br> Dé 2 : ' + r_g1[1] +
+        '<br> Dé 3 : ' + r_g1[2] +
+        '<hr> Score joueur p1 : ' + retour.gains_tot_p1;
 
-        //dés du joueur 2
-        gains_p2[i] = document.getElementById('gains_p2').innerHTML = "Lancé de dés joueur 2 : " +
-            "<br> Dé 1 : " + r_g2[i] +
-            "<br> Dé 2 : " + r_g2[i - 1] +
-            "<br> Dé 3 : " + r_g2[i - 2] +
-            "<hr>Score joueur p2 : " + retour.gains_tot_p2;
-    }
+    //dés du joueur 2
+    gains_p2[0] = document.getElementById('gains_p2').innerHTML = 'Lancé de dés joueur 2 : ' +
+        '<br> Dé 1 : ' + r_g2[0] +
+        '<br> Dé 2 : ' + r_g2[1] +
+        '<br> Dé 3 : ' + r_g2[2] +
+        '<hr> Score joueur p2 : ' + retour.gains_tot_p2;
+    alert(gains_p1[0])
+    /*
+            //crée la balise
+            var div_p1 = document.createElement('div_'+i+'');
+            //crée le texte
+            var div_text_1 = document.createTextNode("This is new.");
+            //accroche le texte à la balise
+            div_p1.appendChild(div_text_1);
+            //recup la balise afin d'atacher
+            var element = document.getElementById("gains_p1");
+            //accroche la div à l'id souhaité
+            element.appendChild(div_p1);
+    */
+    //crée la balise
+    var div_p1 = document.createElement('div');
+    //crée classe
+    div_p1.className = "div_p1";
+    //crée le texte
+    var div_text_1 = document.createTextNode("salut");
+    //accroche le texte à la balise div_p1
+    div_p1.appendChild(div_text_1);
+    //recup la balise afin d'attacher
+    var element = document.getElementById("gains_p1");
+    //accroche la div à l'id souhaité
+    var div = element.appendChild(div_p1);
+    
+    
+
+
+    //}
+
     for (i = 0; i < visible.length; i++) {
         visible[i].style.visibility = "visible";
     }
 
 }
-
-
 
 /* Fonction contenant le moteur AJAX pointant sur le fichier cible PHP
 Cette fonction traite également la réponse du serveur 
@@ -230,7 +251,8 @@ function lancePhaseDeux(p1, p2) {
 
                 //fonction d'affichage des éléments ajax reçus 
                 retour_calc_php(retour);
-                return retour.jet
+
+
             } else {
                 // message d'erreur car erreur communication
                 document.getElementById('jetons_restants_p1').innerHTML = "Erreur dans l'appel du fichier calcul_gain.php";

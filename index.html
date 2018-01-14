@@ -133,7 +133,15 @@
         // pour la vérif de l'input, vérifie le nombre dejetons
         var nbre_jetons = document.getElementById("nbre_jetons");
         var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_input);
+        
+        //nombres de jetons restants
+        var jetons_p1 = document.getElementById('jetons_restants_p1');
+        var jetons_p2 = document.getElementById('jetons_restants_p2');
 
+          //remplace le contenu de l'input par les deux nombres de jetons
+        var p1_value = nbre_jetons.value;
+        var p2_value = nbre_jetons.value;
+        
         //bouton qui envoit les données
         var bouton_jetons = document.getElementById("bouton_jetons");
         var event_jetons = bouton_jetons.addEventListener('click', valide_jetons);
@@ -142,6 +150,7 @@
         var relancer = document.getElementById("relancer");
         var relance = relancer.addEventListener('click', relance);
 
+   
     </script>
 </body>
 
