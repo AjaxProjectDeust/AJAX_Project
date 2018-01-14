@@ -57,9 +57,9 @@ function init_affichage(p1, p2) {
     
     $("#jetons_restants_p1").html(p1.nbjetons);
     $("#jetons_restants_p2").html(p2.nbjetons);
-    
     $("#affich_jetons").removeClass("hidden");
     $("#affich_lancer").removeClass("hidden");
+    $("#start").removeClass("hidden");
 }
 
 function startGame() {
@@ -78,6 +78,10 @@ function startGame() {
         if(response.gagnant)
         {
             $("#msg_gagnant").html("Le gagnant de la partie est " + response.gagnant);
+            $("#start").addClass("hidden");
+            $("#startGameForm").removeClass("hidden");
+            $("#bouton_jetons").val("Rejouer");
+            $("#start").val("Commencer");
         }
         
     })
