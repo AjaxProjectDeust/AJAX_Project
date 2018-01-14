@@ -10,15 +10,15 @@
 
 <body>
     <h1>Jeu du 421</h1>
-    <h2>Règles officieles</h2>
+    <h2>Règles officielles</h2>
     <p>
-        Réalisation d’un jeu de dé 421 simplifié L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même nombre de jetons. Chaque joueur lance 3 dés. Celui qui fait la meilleure combinaison (vous pouvez ici simplifier) donne des jetons à l’autre en fonction de la combinaison réalisée. Si les combinaisons sont équivalentes, il ne se passe rien. La partie est terminée lorsque l’un des joueurs n’a plus de jetons. Il faudra spécifier à l’utilisateur les règles précises du jeu
+        Réalisation d’un jeu de dé 421 simplifié§. L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même nombre de jetons. Chaque joueur lance 3 dés. Celui qui fait la meilleure combinaison (vous pouvez ici simplifier) donne des jetons à l’autre en fonction de la combinaison réalisée. Si les combinaisons sont équivalentes, il ne se passe rien. La partie est terminée lorsque l’un des joueurs n’a plus de jetons. Il faudra spécifier à l’utilisateur les règles précises du jeu
     </p>
     <h2>Régles simplifiées</h2>
     <ol>
         <li>Entrez le nombre de jetons souhaités</li>
-        <li></li>
-        <li></li>
+        <li>Appuyer sur le bouton commencer pour débuter la partie</li>
+        <li>Lorsque la partie se termine, il vous est proposé de rejouer une partie.</li>
     </ol>
     <!-- Nombre de jetons -->
         <form id="startGameForm" action="/php/init.php" method="post">
@@ -31,17 +31,17 @@
 
     <div id="affich_jetons" class="hidden">
         <h1 id="h1">Jetons restants</h1>
-        Nombre de jeton joueur 1:<span class="resultat" id="jetons_restants_p1"></span>
-        Nombre de jeton IA :<span class="resultat" id="jetons_restants_p2"></span>
+        Nombre de jeton joueur 1: <span class="resultat" id="jetons_restants_p1"></span>
+        Nombre de jeton IA : <span class="resultat" id="jetons_restants_p2"></span>
     </div>
 
     <!-- lancement des dés  -->
     
     <div id="affich_lancer" class="hidden">
-        <h1 id="h1">Lancé de dés</h1>
+        <h2>Lancé de dés</h2>
         <input  type="button" value="Commencer" id="start" />
     <!-- score dés-->
-        <h1 id="h1">Score des dés par joueur</h1>
+        <h2>Score des dés par joueur</h2>
         Lancer du joueur 1<div id="affich_desj1"></div>
         Lancer du joueur 2<div id="affich_desj2"></div>
         <span id="msg_score"></span>

@@ -59,7 +59,7 @@ function init_affichage(p1, p2) {
     $("#jetons_restants_p2").html(p2.nbjetons);
     $("#affich_jetons").removeClass("hidden");
     $("#affich_lancer").removeClass("hidden");
-    $("#start").removeClass("hidden");
+    $("#start").removeClass("hidden")
 }
 
 function startGame() {
@@ -70,7 +70,7 @@ function startGame() {
         $("#jetons_restants_p1").html(response.j1_jetons);
         $("#jetons_restants_p2").html(response.j2_jetons);
         
-        $("#msg_score").html(response.gagnant_manche);
+        $("#msg_score").html(response.gagnant_manche + "<br>");
         
         $("#affich_desj1").html(affiche_des(response.des_j1));
         $("#affich_desj2").html(affiche_des(response.des_j2));
