@@ -15,12 +15,13 @@ function verif_jetons() {
 
     if (message == null) {
         element.html("Valide");
-       // element.style.color = "green";
+        element.style.color = "green";
         return true;
     }
-    else {
+    else 
+    {
         element.html(message);
-       // element.style.color = "red";
+        element.style.color = "red";
         return false;
     }
         
