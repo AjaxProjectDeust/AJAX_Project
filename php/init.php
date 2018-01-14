@@ -2,13 +2,7 @@
 include_once "./jet_des.php";
     
 	// On relaye la session
-        session_start();
-    //    $_SESSION['joueur1'] = $_POST['jetons_restants_p1'];
-    //    $_SESSION['joueur2'] = $_POST['jetons_restants_p2'];
-
-            
-    //    $jeton_p1 = $_SESSION['joueur1'];
-    //    $jeton_p2 = $_SESSION['joueur2'];
+    session_start();
 
     $nbr_jetons = $_POST['nbre_jetons'];
 
