@@ -15,9 +15,13 @@ td{
     border-style:solid;
 }
 .hidden{
-    visibility: hidden;
+    display: none;
 }
 .resultat{
     display: inline-block;
     width:200px;
+}
+
+.des {
+    font-size: 60px
 }
