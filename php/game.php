@@ -24,6 +24,7 @@
         $gain_manche = comptePoints(1, 0,$gain);
         $gagnant_manche="Le joueur 2 a gagné. Le joueur 1 reçoit ".$gain_manche." jetons";
     }
+
     else
     {
         $gagnant_manche="Egalite, rien ne ce passe";
@@ -33,6 +34,7 @@
     {
         $gagnant = $_SESSION["j1_name"];
     }
+
     if($_SESSION["nbjetons"][1] <= 0)
     {
         $gagnant = $_SESSION["j2_name"];
