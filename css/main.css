@@ -1,12 +1,21 @@
+body{
+    text-align: center;
+    background-color:cadetblue;
+}
 h1{
     text-decoration: underline;
-    font-size: 20px;
-
+    font-size: 30px;
+    text-align:  center;
 }
 h2{
     text-decoration: underline;
+    text-align: center;
+    
 }
-
+.dispo{
+    width: 800px;
+    margin: 0 auto;
+}
 table{
     border-style:outset;
 }
@@ -14,15 +23,17 @@ table{
 td{
     border-style:solid;
 }
-
 .hidden{
-    visibility: hidden;
-}
-
-.div_p1{
-    color:red;
+    display: none;
 }
 .resultat{
     display: inline-block;
     width:200px;
+}
+
+.des {
+    font-size: 60px;
+}
+li{
+   list-style-type: none;
 }

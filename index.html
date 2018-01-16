@@ -3,154 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     <link rel="stylesheet" href="css/main.css">
     <title>Jeu du 421</title>
 </head>
 
 <body>
     <h1>Jeu du 421</h1>
-    <h2>Règles officieles</h2>
-    <p>
-        Réalisation d’un jeu de dé 421 simplifié L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même nombre de jetons. Chaque joueur lance 3 dés. Celui qui fait la meilleure combinaison (vous pouvez ici simplifier) donne des jetons à l’autre en fonction de la combinaison réalisée. Si les combinaisons sont équivalentes, il ne se passe rien. La partie est terminée lorsque l’un des joueurs n’a plus de jetons. Il faudra spécifier à l’utilisateur les règles précises du jeu
-    </p>
-    <h2>Régles simplifiées</h2>
-    <ol>
-        <li>Entrez le nombre de jetons souhaités</li>
-        <li></li>
-        <li></li>
-
-    </ol>
-    <!-- 
-    <h2> Ordre des combinaisons</h2>
-    <table>
-        <tr>
-            <td>N°1</td>
-            <td>421</td>
-        </tr>
-        <tr>
-            <td>N°2</td>
-            <td>3 As</td>
-        </tr>
-        <tr>
-            <td>N°3</td>
-            <td>2 As – Six</td>
-        </tr>
-        <tr>
-            <td>N°4</td>
-            <td>3 Six</td>
-        </tr>
-        <tr>
-            <td>N°5</td>
-            <td>2 As – Cinq</td>
-        </tr>
-        <tr>
-            <td>N°6</td>
-            <td>3 Cinq</td>
-        </tr>
-        <tr>
-            <td>N°7 </td>
-            <td>2 As – Quatre</td>
-        </tr>
-        <tr>
-            <td>N°8</td>
-            <td>3 Quatre</td>
-        </tr>
-        <tr>
-            <td>N°9</td>
-            <td>2 As – Trois</td>
-        </tr>
-        <tr>
-            <td>N°10</td>
-            <td>3 Trois</td>
-        </tr>
-        <tr>
-            <td>N°11</td>
-            <td>2 As – Deux</td>
-        </tr>
-        <tr>
-            <td>N°12</td>
-            <td>3 Deux</td>
-        </tr>
-        <tr>
-            <td>N°13</td>
-            <td>Six – Cinq – Quatre</td>
-        </tr>
-        <tr>
-            <td>N°14</td>
-            <td>Cinq – Quatre – Trois</td>
-        </tr>
-        <tr>
-            <td>N°15</td>
-            <td>Quatre – Trois – Deux</td>
-        </tr>
-        <tr>
-            <td>N°16</td>
-            <td>Trois – Deux – As</td>
-        </tr>
-    </table>
-    -->
+    <div class="dispo">
+        <h2>Règles officielles</h2>
+        <p>
+            Réalisation d’un jeu de dé 421 simplifié. L’utilisateur joue contre l’ordinateur. Les 2 joueurs partent avec le même nombre de jetons. Chaque joueur lance 3 dés. Celui qui fait la meilleure combinaison (vous pouvez ici simplifier) donne des jetons à l’autre en fonction de la combinaison réalisée. Si les combinaisons sont équivalentes, il ne se passe rien. La partie est terminée lorsque l’un des joueurs n’a plus de jetons. Il faudra spécifier à l’utilisateur les règles précises du jeu
+        </p>
+    </div>
+    <div class="dispo">
+        <h2>Régles simplifiées</h2>
+        <ol>
+            <li>Entrez le nombre de jetons souhaités</li>
+            <li>Appuyer sur le bouton commencer pour débuter la partie</li>
+            <li>Lorsque la partie se termine, il vous est proposé de rejouer une partie.</li>
+            <li>La valeur de la main la plus forte sera automatiquement calculé pour déterminé le gain ou la perte.</li>
+            <li>Liste des valeurs (de la plus faible à la plus forte):<br> 321, 432, 543, 654, 222, 211 = 2 jetons, <br> 333, 311 = 3 jetons, <br>444, 411 = 4 jetons,<br> 555, 511 = 5 jetons , <br>666, 611 = 6 jetons,<br> 111 = 7 jetons, <br>421 = 10 jetons </li>
+        </ol>
+    </div>
 
     <!-- Nombre de jetons -->
-    <h1>Nombre de jetons des joueurs</h1>
-    <div>
-        <span id="player_1">
+    <form id="startGameForm" action="/php/init.php" method="post">
+        <h1>Nombre de jetons</h1>
         Entrez votre nombre de jetons :<br>
-        <input type="text" id="nbre_jetons" value='21'/> ... avant de
-        <input type="button" value="jouer !" id="bouton_jetons" /><br>
+        <input type="number" min="20" max="99" name="nbre_jetons" id="nbre_jetons" value='21' />
+        <input type="submit" value="jouer !" id="bouton_jetons" /><br>
         <span class="retour" id="span_nbre_jetons"></span>
-        </span>
-        <span id="player_2"></span>
+    </form>
+
+    <div id="affich_jetons" class="hidden">
+        <h1 id="h1">Jetons restants</h1>
+        Nombre de jeton joueur 1: <span class="resultat" id="jetons_restants_p1"></span> Nombre de jeton IA : <span class="resultat" id="jetons_restants_p2"></span>
     </div>
 
-    <div style="visibility: hidden">
-        <h1>Affichage du nombre de jetons restants</h1>
-        <span class="resultat" id="jetons_restants_p1"></span>
-        <span class="resultat" id="jetons_restants_p2"></span><br>
-        <input type="button" value="Lancer !" id="relancer" />
-    </div>
+    <!-- lancement des dés  -->
 
-    <div class="hidden">
-        <h1>Lancé de dés</h1>
-        <span class="resultat" id="gains_p1"></span>
-        <span id="score_p1"></span>
-        <span class="resultat" id="gains_p2"></span>
-        <span id="score_p2"></span><br><br>
+    <div id="affich_lancer" class="hidden">
+        <h2>Lancé de dés</h2>
+        <input type="button" value="Commencer" id="start" />
+        <!-- score dés-->
+        <h2>Score des dés par joueur</h2>
+        <p>Lancer du joueur 1</p>
+        <div id="affich_desj1"></div>
+        <p>Lancer du joueur 2</p>
+        <div id="affich_desj2"></div>
+        <span id="msg_score"></span>
+        <span id="msg_gagnant"></span>
     </div>
-
-    <!-- score dés-->
-    <div class="hidden">
-        <h1 id="h1">Score des dés par joueur</h1>
-        <span id="msg_score_1"></span>
-        <span id="msg_score_2"></span>
-    </div>
-
+    <!-- Appel de Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script/appel_1.js"></script>
     <!-- fichier ajax-->
     <script type="text/javascript">
+        $("#startGameForm").on("submit", function(event) {
+            event.preventDefault();
+
+            envoi_jeton();
+        })
         /* On crée nos différents "écouteurs" d'événements*/
 
         // pour la vérif de l'input, vérifie le nombre dejetons
-        var nbre_jetons = document.getElementById("nbre_jetons");
-        var listen_nbre_jetons = nbre_jetons.addEventListener('keyup', verif_input);
-        
-        //nombres de jetons restants
-        var jetons_p1 = document.getElementById('jetons_restants_p1');
-        var jetons_p2 = document.getElementById('jetons_restants_p2');
-
-          //remplace le contenu de l'input par les deux nombres de jetons
-        var p1_value = nbre_jetons.value;
-        var p2_value = nbre_jetons.value;
-        
-        //bouton qui envoit les données
-        var bouton_jetons = document.getElementById("bouton_jetons");
-        var event_jetons = bouton_jetons.addEventListener('click', valide_jetons);
+        $("#nbre_jetons").on('keyup', verif_jetons);
+        $("#start").on('click', startGame);
 
         //relance de dés
-        var relancer = document.getElementById("relancer");
+        var relancer = document.getElementById("start");
         var relance = relancer.addEventListener('click', relance);
 
-   
     </script>
 </body>
 
